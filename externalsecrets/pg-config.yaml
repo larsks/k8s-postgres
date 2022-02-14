@@ -1,0 +1,15 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: pg-config
+spec:
+  secretStoreRef:
+    name: cluster-secrets
+    kind: ClusterSecretStore
+  target:
+    name: pg-config
+  data:
+    - secretKey: POSTGRES_PASSWORD
+      remoteRef:
+        key: house/postgres/pg-config
+        property: password

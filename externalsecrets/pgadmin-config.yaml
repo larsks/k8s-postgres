@@ -1,0 +1,19 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: pgadmin-config
+spec:
+  secretStoreRef:
+    name: cluster-secrets
+    kind: ClusterSecretStore
+  target:
+    name: pgadmin-config
+  data:
+    - secretKey: PGADMIN_DEFAULT_EMAIL
+      remoteRef:
+        key: house/postgres/pgadmin-config
+        property: username
+    - secretKey: PGADMIN_DEFAULT_PASSWORD
+      remoteRef:
+        key: house/postgres/pgadmin-config
+        property: password
